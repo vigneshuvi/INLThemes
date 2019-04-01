@@ -10,20 +10,20 @@ import UIKit
 
 
 extension UIButton {
-	open override func apply(_ theme: ThemeElement) {
-		super.apply(theme)
+	open override func applyTheme(_ theme: INLThemeElement) {
+		super.applyTheme(theme)
 
 		if let color = theme.color("color") {
 			self.imageView?.tintColor = color
 		}
 		if let textColor = theme.color("textColor") {
-			self.setTitleColor(textColor, for: .normal)
+			self.setTitleColor(textColor, for: UIControl.State())
 		}
 		if let text = theme.string("text") {
-			self.setTitle(text, for: .normal)
+			self.setTitle(text, for: UIControl.State())
 		}
 		if let image = theme.image("image") {
-			self.setImage(image, for: .normal)
+			self.setImage(image, for: UIControl.State())
 		}
 		if let font = theme.font() {
 			self.titleLabel?.font = font
@@ -33,17 +33,17 @@ extension UIButton {
 
 
 extension UICollectionViewCell {
-	open override func apply(_ theme: ThemeElement) {
-		super.apply(theme)
+	open override func applyTheme(_ theme: INLThemeElement) {
+		super.applyTheme(theme)
 
 		if let backgroundColor = theme.color("backgroundColor") {
-			let backgroundView = UIView(frame: .zero)
+			let backgroundView = UIView(frame: CGRect.zero)
 			backgroundView.backgroundColor = backgroundColor
 			backgroundView.layer.masksToBounds = true
 			self.backgroundView = backgroundView
 		}
 		if let selectedBackgroundColor = theme.color("selectedBackgroundColor") {
-			let backgroundView = UIView(frame: .zero)
+			let backgroundView = UIView(frame: CGRect.zero)
 			backgroundView.backgroundColor = selectedBackgroundColor
 			backgroundView.layer.masksToBounds = true
 			self.selectedBackgroundView = backgroundView
@@ -53,8 +53,8 @@ extension UICollectionViewCell {
 
 
 extension UIImageView {
-	open override func apply(_ theme: ThemeElement) {
-		super.apply(theme)
+	open override func applyTheme(_ theme: INLThemeElement) {
+		super.applyTheme(theme)
 
 		if let image = theme.image("image") {
 			self.image = image
@@ -64,8 +64,8 @@ extension UIImageView {
 
 
 extension UILabel {
-	open override func apply(_ theme: ThemeElement) {
-		super.apply(theme)
+	open override func applyTheme(_ theme: INLThemeElement) {
+		super.applyTheme(theme)
 
 		if let text = theme["text"] {
 			self.text = text
@@ -81,8 +81,8 @@ extension UILabel {
 
 
 extension UINavigationBar {
-	open override func apply(_ theme: ThemeElement) {
-		super.apply(theme)
+	open override func applyTheme(_ theme: INLThemeElement) {
+		super.applyTheme(theme)
 
 		if let barTintColor = theme.color("barTintColor") {
 			self.barTintColor = barTintColor
@@ -92,8 +92,8 @@ extension UINavigationBar {
 
 
 extension UIPageControl {
-	open override func apply(_ theme: ThemeElement) {
-		super.apply(theme)
+	open override func applyTheme(_ theme: INLThemeElement) {
+		super.applyTheme(theme)
 
 		if let color = theme.color("color") {
 			self.currentPageIndicatorTintColor = color
@@ -106,8 +106,8 @@ extension UIPageControl {
 
 
 extension UIScrollView {
-	open override func apply(_ theme: ThemeElement) {
-		super.apply(theme)
+	open override func applyTheme(_ theme: INLThemeElement) {
+		super.applyTheme(theme)
 
 		if let useDarkIndicator = theme.bool("useDarkIndicator") {
 			self.indicatorStyle = useDarkIndicator ? .black : .white
@@ -116,8 +116,8 @@ extension UIScrollView {
 }
 
 extension UISwitch {
-	open override func apply(_ theme: ThemeElement) {
-		super.apply(theme)
+	open override func applyTheme(_ theme: INLThemeElement) {
+		super.applyTheme(theme)
 
 		if let tintColor = theme.color("tintColor") {
 			self.onTintColor = tintColor
@@ -127,8 +127,8 @@ extension UISwitch {
 
 
 extension UITabBar {
-	open override func apply(_ theme: ThemeElement) {
-		super.apply(theme)
+	open override func applyTheme(_ theme: INLThemeElement) {
+		super.applyTheme(theme)
 
 		if let barTintColor = theme.color("barTintColor") {
 			self.barTintColor = barTintColor
@@ -138,8 +138,8 @@ extension UITabBar {
 
 
 extension UITableView {
-	open override func apply(_ theme: ThemeElement) {
-		super.apply(theme)
+	open override func applyTheme(_ theme: INLThemeElement) {
+		super.applyTheme(theme)
 
 		if let separatorColor = theme.color("separatorColor") {
 			self.separatorColor = separatorColor;
@@ -149,8 +149,8 @@ extension UITableView {
 
 
 extension UITableViewCell {
-	open override func apply(_ theme: ThemeElement) {
-		super.apply(theme)
+	open override func applyTheme(_ theme: INLThemeElement) {
+		super.applyTheme(theme)
 
 		if let backgroundColor = theme.color("backgroundColor") {
 			let backgroundView = UIView(frame: CGRect.zero)
@@ -171,8 +171,8 @@ extension UITableViewCell {
 
 extension UITextField {
 
-	open override func apply(_ theme: ThemeElement) {
-		super.apply(theme)
+	open override func applyTheme(_ theme: INLThemeElement) {
+		super.applyTheme(theme)
 
 		if let text = theme["text"] {
 			self.text = text
@@ -184,7 +184,7 @@ extension UITextField {
 			self.textColor = textColor
 		}
 		if let inactiveColor = theme.color("placeholderColor"), let placeholder = self.placeholder {
-			self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedStringKey.foregroundColor: inactiveColor])
+			self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): inactiveColor]))
 		}
 		if let font = theme.font() {
 			self.font = font
@@ -194,8 +194,8 @@ extension UITextField {
 
 
 extension UITextView {
-	open override func apply(_ theme: ThemeElement) {
-		super.apply(theme)
+	open override func applyTheme(_ theme: INLThemeElement) {
+		super.applyTheme(theme)
 
 		if let text = theme["text"] {
 			self.text = text
@@ -207,4 +207,15 @@ extension UITextView {
 			self.font = font
 		}
 	}
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

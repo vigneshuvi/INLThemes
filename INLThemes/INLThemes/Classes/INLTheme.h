@@ -8,18 +8,27 @@
 #import <Foundation/Foundation.h>
 #import "INLThemeElement.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-NS_SWIFT_NAME(Theme)
 @interface INLTheme : NSObject
 
-@property (strong, nonatomic) NSDictionary<NSString *, INLThemeElement *> * uiElements;
+@property (strong, nonatomic) NSDictionary<NSString *, INLThemeElement *> * __nonnull uiElements;
 
-+ (instancetype)themeWithPlist:(NSString *)plistName;
-+ (instancetype)themeWithJSONData:(NSData *)jsonData;
-+ (instancetype)themeWithJSONFile:(NSString *)jsonName;
-+ (instancetype)themeWithJSON:(NSString *)json;
++(instancetype __nonnull)themeWithPlist:(NSString * __nonnull)plistName;
++(instancetype __nonnull)themeWithJSONData:(NSData * __nonnull)jsonData;
++(instancetype __nonnull)themeWithJSONFile:(NSString * __nonnull)jsonName;
++(instancetype __nonnull)themeWithJSON:(NSString * __nonnull)json;
+
+// Fonts
+- (NSString * __nullable)regularFontName;
+- (NSString * __nullable)boldFontName;
+- (NSString * __nullable)lightFontName;
+
+// Colors
+- (UIColor * __nullable)colorWithName:(NSString * __nonnull)colorName;
+- (UIColor * __nullable)primaryColor;
+- (UIColor * __nullable)primaryDarkColor;
+- (UIColor * __nullable)accentColor;
+- (UIColor * __nullable)textColorPrimary;
+- (UIColor * __nullable)textColorSecondary;
+
 
 @end
-
-NS_ASSUME_NONNULL_END

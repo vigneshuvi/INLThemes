@@ -13,10 +13,10 @@ class BlackViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ThemeService.register(self)
+        INLThemeService.registerThemeConsumer(self)
     }
 
 	deinit {
-        ThemeService.remove(self)
+		INLThemeService.removeThemeConsumer(self)
 	}
 }

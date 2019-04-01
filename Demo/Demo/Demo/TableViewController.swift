@@ -13,22 +13,22 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ThemeService.register(self)
+		INLThemeService.registerThemeConsumer(self)
     }
 
 	deinit {
-        ThemeService.remove(self)
+		INLThemeService.removeThemeConsumer(self)
 	}
 
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return 3
 	}
 
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+		let cell = tableView.dequeueReusableCellWithIdentifier("cell")!
 
-        ThemeService.applyTheme(to: cell)
+		INLThemeService.applyThemeTo(cell)
 
 		return cell
 	}

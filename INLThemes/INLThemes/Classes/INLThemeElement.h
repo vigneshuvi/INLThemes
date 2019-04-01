@@ -7,17 +7,12 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
-NS_SWIFT_NAME(ThemeElement)
 @interface INLThemeElement : NSObject
 
-@property (strong, nonatomic) NSDictionary * values;
+@property (strong, nonatomic) NSDictionary * __nonnull values;
 
-+ (instancetype)elementWithDictionary:(NSDictionary *)dict;
++(instancetype __nonnull)elementWithDictionary:(NSDictionary * __nonnull)dict;
 
-- (NSString *)valueForKey:(NSString *)key;
+-(NSString * __nullable)valueForKey:(NSString * __nonnull)key;
 
 @end
-
-NS_ASSUME_NONNULL_END

@@ -16,31 +16,39 @@
 synthesizeElementId
 
 - (void)applyTheme:(INLThemeElement *)theme {
+    if ([self isKindOfClass:[UILabel class]]) {
+        NSString *fontName = [theme valueForKey:@"font"];
 
-	NSString * backgroundColorHex = [theme valueForKey:@"backgroundColor"];
-	if (backgroundColorHex) {
-		self.backgroundColor = [UIColor colorWithHex:backgroundColorHex];
-	}
+        if (fontName != nil) {
+            UILabel *label = (UILabel *) self;
+            label.font = [UIFont fontWithName:fontName size:label.font.pointSize];
+        }
+    }
 
-	NSString * tintColorHex = [theme valueForKey:@"tintColor"];
-	if (tintColorHex) {
-		self.tintColor = [UIColor colorWithHex:tintColorHex];
-	}
+    NSString *backgroundColorHex = [theme valueForKey:@"backgroundColor"];
+    if (backgroundColorHex) {
+        self.backgroundColor = [UIColor colorWithHex:backgroundColorHex];
+    }
 
-	NSNumber * hidden = theme.values[@"hidden"];
-	if (hidden) {
-		self.hidden = [hidden boolValue];
-	}
+    NSString *tintColorHex = [theme valueForKey:@"tintColor"];
+    if (tintColorHex) {
+        self.tintColor = [UIColor colorWithHex:tintColorHex];
+    }
 
-	NSNumber * alpha = theme.values[@"alpha"];
-	if (alpha) {
-		self.alpha = [hidden boolValue];
-	}
+    NSNumber *hidden = theme.values[@"hidden"];
+    if (hidden) {
+        self.hidden = [hidden boolValue];
+    }
 
-	NSNumber * cornerRadius = theme.values[@"cornerRadius"];
-	if (cornerRadius) {
-		self.layer.cornerRadius = [cornerRadius floatValue];
-	}
+    NSNumber *alpha = theme.values[@"alpha"];
+    if (alpha) {
+        self.alpha = [hidden boolValue];
+    }
+
+    NSNumber *cornerRadius = theme.values[@"cornerRadius"];
+    if (cornerRadius) {
+        self.layer.cornerRadius = [cornerRadius floatValue];
+    }
 }
 
 @end
@@ -50,21 +58,21 @@ synthesizeElementId
 
 synthesizeElementId
 
-- (void)applyTheme:(INLThemeElement *)theme {
-	NSNumber * active = theme.values[@"active"];
-	if (active) {
-		self.active = [active boolValue];
-	}
+-(void)applyTheme:(INLThemeElement *)theme {
+    NSNumber *active = theme.values[@"active"];
+    if (active) {
+        self.active = [active boolValue];
+    }
 
-	NSNumber * constant = theme.values[@"constant"];
-	if (constant) {
-		self.constant = [constant floatValue];
-	}
+    NSNumber *constant = theme.values[@"constant"];
+    if (constant) {
+        self.constant = [constant floatValue];
+    }
 
-	NSNumber * priority = theme.values[@"priority"];
-	if (priority) {
-		self.priority = [priority integerValue];
-	}
+    NSNumber *priority = theme.values[@"priority"];
+    if (priority) {
+        self.priority = [priority integerValue];
+    }
 }
 
 @end
@@ -73,8 +81,8 @@ synthesizeElementId
 @implementation NSObject (INLThemable)
 
 - (BOOL)isThemable {
-	return [self conformsToProtocol:@protocol(INLThemedView)]
-		&& [(id<INLThemedView>)self elementId] != nil;
+    return [self conformsToProtocol:@protocol(INLThemedView)]
+            && [(id <INLThemedView>) self elementId] != nil;
 }
 
 @end
