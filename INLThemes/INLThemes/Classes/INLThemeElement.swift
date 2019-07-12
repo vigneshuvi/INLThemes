@@ -10,44 +10,44 @@ import Foundation
 
 extension INLThemeElement {
 
-	open subscript (elementId:String) -> String? {
+	public subscript (elementId:String) -> String? {
 		return values[elementId] as? String
 	}
 
-	open func string(elementId: String) -> String? {
+	public func string(_ elementId: String) -> String? {
 		return self[elementId]
 	}
 
-	open func number(elementId: String) -> Double? {
+	public func number(_ elementId: String) -> Double? {
 		guard let number = values[elementId] as? NSNumber
 			else { return nil }
 
 		return number.doubleValue
 	}
 
-	open func color(elementId: String) -> UIColor? {
+	public func color(_ elementId: String) -> UIColor? {
 		guard let color = self[elementId]
 			else { return nil }
 
 		return UIColor(hex: color)
 	}
 
-	open func image(elementId: String) -> UIImage? {
+	public func image(_ elementId: String) -> UIImage? {
 		guard let image = self[elementId]
 			else { return nil }
 
 		return INLAssetService.imageNamed(image)
 	}
 
-	open func bool(elementId: String) -> Bool? {
+	public func bool(_ elementId: String) -> Bool? {
 		guard let number = values[elementId] as? NSNumber
 			else { return nil }
 
 		return number.boolValue
 	}
 
-	open func font() -> UIFont? {
-        guard let fontName = self["font"], let fontSize = self.number(elementId: "fontSize")
+	public func font() -> UIFont? {
+		guard let fontName = self["font"], let fontSize = self.number("fontSize")
 			else { return nil }
 
 		return UIFont(name: fontName, size: CGFloat(fontSize))

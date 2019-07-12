@@ -23,7 +23,7 @@ open class INLThemeService: NSObject {
 	var themeConsumers = [INLThemeConsumer]()
 
 	// MARK: - Register theme consumer
-	open func registerThemeConsumer(themeConsumer: INLThemeConsumer) {
+	open func registerThemeConsumer(_ themeConsumer: INLThemeConsumer) {
 
 		themeConsumers.append(themeConsumer)
 		if let theme = currentTheme {
@@ -31,7 +31,7 @@ open class INLThemeService: NSObject {
 		}
 	}
 
-	open func removeThemeConsumer(themeConsumer: INLThemeConsumer) {
+	open func removeThemeConsumer(_ themeConsumer: INLThemeConsumer) {
 
 		themeConsumers = themeConsumers.filter { !$0.isEqual(themeConsumer) }
 	}
@@ -48,7 +48,7 @@ open class INLThemeService: NSObject {
 		applyTheme(theme, toViews: themeConsumer.themedViews())
 	}
 
-	open func applyThemeTo(themeConsumer: INLThemeConsumer) {
+	open func applyThemeTo(_ themeConsumer: INLThemeConsumer) {
 
 		if let currentTheme = self.currentTheme {
 			applyTheme(currentTheme, to: themeConsumer)
@@ -65,12 +65,12 @@ open class INLThemeService: NSObject {
 	}
 
 	// MARK: - Convinience
-	open class func registerThemeConsumer(themeConsumer: INLThemeConsumer) {
-        sharedService.registerThemeConsumer(themeConsumer: themeConsumer)
+	open class func registerThemeConsumer(_ themeConsumer: INLThemeConsumer) {
+		sharedService.registerThemeConsumer(themeConsumer)
 	}
 
-	open class func removeThemeConsumer(themeConsumer: INLThemeConsumer) {
-        sharedService.removeThemeConsumer(themeConsumer: themeConsumer)
+	open class func removeThemeConsumer(_ themeConsumer: INLThemeConsumer) {
+		sharedService.removeThemeConsumer(themeConsumer)
 	}
 
 	open class func applyTheme(_ theme: INLTheme) {
@@ -81,7 +81,7 @@ open class INLThemeService: NSObject {
 		sharedService.applyTheme(theme, to: themeConsumer)
 	}
 
-	open class func applyThemeTo(themeConsumer: INLThemeConsumer) {
-        sharedService.applyThemeTo(themeConsumer: themeConsumer)
+	open class func applyThemeTo(_ themeConsumer: INLThemeConsumer) {
+		sharedService.applyThemeTo(themeConsumer)
 	}
 }
