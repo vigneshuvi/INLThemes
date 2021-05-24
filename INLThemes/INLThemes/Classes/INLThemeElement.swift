@@ -25,6 +25,7 @@ extension INLThemeElement {
 		return number.doubleValue
 	}
 
+    @objc
 	public func color(_ elementId: String) -> UIColor? {
 		guard let color = self[elementId]
 			else { return nil }
