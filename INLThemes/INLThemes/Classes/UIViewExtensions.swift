@@ -17,13 +17,13 @@ extension UIButton {
 			self.imageView?.tintColor = color
 		}
 		if let textColor = theme.color("textColor") {
-			self.setTitleColor(textColor, for: UIControl.State())
+			self.setTitleColor(textColor, for: UIControlState())
 		}
 		if let text = theme.string("text") {
-			self.setTitle(text, for: UIControl.State())
+			self.setTitle(text, for: UIControlState())
 		}
 		if let image = theme.image("image") {
-			self.setImage(image, for: UIControl.State())
+			self.setImage(image, for: UIControlState())
 		}
 		if let font = theme.font() {
 			self.titleLabel?.font = font
@@ -184,7 +184,7 @@ extension UITextField {
 			self.textColor = textColor
 		}
 		if let inactiveColor = theme.color("placeholderColor"), let placeholder = self.placeholder {
-			self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): inactiveColor]))
+			self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedStringKey.foregroundColor: inactiveColor])
 		}
 		if let font = theme.font() {
 			self.font = font
@@ -207,15 +207,4 @@ extension UITextView {
 			self.font = font
 		}
 	}
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
-	guard let input = input else { return nil }
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
-	return input.rawValue
 }
